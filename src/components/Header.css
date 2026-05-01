@@ -1,0 +1,8 @@
+.theme-btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  margin-right: 15px;
+}

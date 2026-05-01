@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* FULL SCREEN APP */
+.app {
+  height: 100vh;
+  overflow: hidden;
+  font-family: "Poppins", sans-serif;
+}
+
+/* ===== LAYOUT ===== */
+
+.mainLayout {
+  display: flex;
+  height: 100vh;
+}
+
+.contentArea {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* page area below navbar */
+.pageContainer {
+  flex: 1;
+  overflow-y: auto;
+  padding: 25px;
+  background: #f4f6f9;
+}
+
+/* ===== DARK THEME ===== */
+
+.dark .pageContainer {
+  background: #121212;
+  color: white;
+}
+
+.dark {
+  background: #121212;
+  color: white;
+}

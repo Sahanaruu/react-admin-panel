@@ -1,0 +1,62 @@
+/* ===== GLOBAL LAYOUT ===== */
+
+.layout {
+  display: flex;
+  background: #f4f6f9;
+  min-height: 100vh;
+}
+
+/* ===== SIDEBAR ===== */
+
+.sidebar {
+  width: 240px;
+  height: 100vh;
+  background: #1e293b;
+  color: white;
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding: 20px;
+}
+
+.sidebar h2 {
+  font-size: 22px;
+  margin-bottom: 40px;
+}
+
+.sidebar a {
+  display: block;
+  color: #cbd5e1;
+  text-decoration: none;
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  background: #3b82f6;
+  color: white;
+}
+
+/* ===== MAIN CONTENT ===== */
+
+.main-content {
+  margin-left: 240px;   /* 🔥 IMPORTANT FIX */
+  padding: 30px;
+  width: calc(100% - 240px);
+}
+
+/* ===== PAGE CARD STYLE ===== */
+
+.page-card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  margin-bottom: 25px;
+}
+
+h1 {
+  margin-bottom: 20px;
+}

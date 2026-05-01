@@ -1,0 +1,24 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: var(--card);
+}
+
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background: var(--accent);
+  color: white;
+}
+
+button {
+  padding: 6px 10px;
+  border: none;
+  background: #ef4444;
+  color: white;
+  border-radius: 5px;
+}
