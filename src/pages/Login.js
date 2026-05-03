@@ -1,40 +1,43 @@
 import React, { useState } from "react";
-import "../pages/Login.css";
+import "../styles/Login.css";
 
-function Login() {
+function Login({ setIsLoggedIn }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = (e) => {
     e.preventDefault();
-    localStorage.setItem("isLoggedIn", "true");
-    window.location.href = "/";
+
+    if (username === "admin" && password === "admin") {
+      setIsLoggedIn(true);
+    } else {
+      alert("Invalid credentials");
+    }
   };
 
   return (
     <div className="login-page">
-      <div className="overlay">
-        <form className="login-card" onSubmit={handleLogin}>
-          <h1>KR Mangalam University</h1>
-          <p>College Admin Panel</p>
+      <form className="login-card" onSubmit={handleLogin}>
+        <h2>College Admin Login</h2>
 
-          <input
-            type="text"
-            placeholder="Username"
-            required
-            onChange={(e) => setUsername(e.target.value)}
-          />
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
 
-          <input
-            type="password"
-            placeholder="Password"
-            required
-            onChange={(e) => setPassword(e.target.value)}
-          />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
 
-          <button type="submit">Login</button>
-        </form>
-      </div>
+        <button type="submit">Login</button>
+      </form>
     </div>
   );
 }
