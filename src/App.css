@@ -1,46 +1,212 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* ========== GLOBAL RESET ========== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: "Segoe UI", sans-serif;
 }
 
-/* FULL SCREEN APP */
-.app {
-  height: 100vh;
-  overflow: hidden;
-  font-family: "Poppins", sans-serif;
+body{
+  transition:0.3s;
 }
 
-/* ===== LAYOUT ===== */
-
-.mainLayout {
-  display: flex;
-  height: 100vh;
+/* ========== THEME COLORS ========== */
+.light{
+  --bg:#f5f7fb;
+  --card:#ffffff;
+  --text:#1f2937;
+  --sidebar:#111827;
+  --accent:#3b82f6;
 }
 
-.contentArea {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+.dark{
+  --bg:#0f172a;
+  --card:#1e293b;
+  --text:#ffffff;
+  --sidebar:#020617;
+  --accent:#3b82f6;
 }
 
-/* page area below navbar */
-.pageContainer {
-  flex: 1;
-  overflow-y: auto;
-  padding: 25px;
-  background: #f4f6f9;
+.app{
+  display:flex;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
 }
 
-/* ===== DARK THEME ===== */
-
-.dark .pageContainer {
-  background: #121212;
-  color: white;
+/* ========== SIDEBAR ========== */
+.sidebar{
+  width:230px;
+  background:var(--sidebar);
+  color:white;
+  padding:20px;
+  position:fixed;
+  height:100vh;
+  left:0;
+  top:0;
 }
 
-.dark {
-  background: #121212;
-  color: white;
+.sidebar h2{
+  margin-bottom:20px;
+}
+
+.sidebar p{
+  font-size:13px;
+  opacity:0.7;
+  margin-bottom:25px;
+}
+
+.sidebar a{
+  display:block;
+  padding:12px 15px;
+  margin-bottom:10px;
+  color:white;
+  text-decoration:none;
+  border-radius:8px;
+  transition:0.2s;
+}
+
+.sidebar a:hover{
+  background:var(--accent);
+}
+
+/* ========== MAIN AREA ========== */
+.main{
+  margin-left:230px;
+  width:100%;
+}
+
+/* ========== TOP NAVBAR ========== */
+.navbar{
+  background:var(--card);
+  padding:15px 30px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  box-shadow:0 2px 8px rgba(0,0,0,0.08);
+}
+
+.navbar h2{
+  font-size:22px;
+}
+
+.nav-right{
+  display:flex;
+  gap:15px;
+  align-items:center;
+}
+
+button{
+  border:none;
+  padding:8px 14px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.toggle{
+  background:var(--accent);
+  color:white;
+}
+
+.logout{
+  background:#ef4444;
+  color:white;
+}
+
+/* ========== PAGE WRAPPER ========== */
+.page{
+  padding:30px;
+}
+
+/* ========== DASHBOARD CARDS ========== */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+  margin-top:20px;
+}
+
+.card{
+  background:var(--card);
+  padding:25px;
+  border-radius:14px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.08);
+  text-align:center;
+}
+
+.card h3{
+  opacity:0.7;
+  margin-bottom:10px;
+}
+
+.card h1{
+  color:var(--accent);
+}
+
+/* ========== CHART CARDS ========== */
+.chart-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:25px;
+  margin-top:30px;
+}
+
+.chart-wide{
+  grid-column:span 2;
+}
+
+/* ========== TABLE STYLE (Students/Teachers/Courses) ========== */
+.table{
+  width:100%;
+  background:var(--card);
+  border-radius:12px;
+  padding:20px;
+  margin-top:20px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+th,td{
+  padding:12px;
+  text-align:left;
+  border-bottom:1px solid #e5e7eb;
+}
+
+th{
+  opacity:0.7;
+}
+
+/* ========== SETTINGS PAGE ========== */
+.settings-box{
+  background:var(--card);
+  padding:25px;
+  border-radius:14px;
+  max-width:500px;
+  margin-top:20px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+
+/* ========== MOBILE RESPONSIVE ========== */
+@media(max-width:900px){
+
+  .sidebar{
+    width:180px;
+  }
+
+  .main{
+    margin-left:180px;
+  }
+
+  .chart-grid{
+    grid-template-columns:1fr;
+  }
+
+  .chart-wide{
+    grid-column:span 1;
+  }
 }

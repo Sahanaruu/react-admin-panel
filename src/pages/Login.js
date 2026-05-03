@@ -1,42 +1,40 @@
 import React, { useState } from "react";
-import "./Login.css";
+import "../pages/Login.css";
 
-function Login({ setIsLoggedIn }) {
-  const [email, setEmail] = useState("");
+function Login() {
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = (e) => {
     e.preventDefault();
-
-    // No backend → allow any login
-    if (email.trim() !== "" && password.trim() !== "") {
-      setIsLoggedIn(true);
-    } else {
-      alert("Enter email & password");
-    }
+    localStorage.setItem("isLoggedIn", "true");
+    window.location.href = "/";
   };
 
   return (
-    <div className="loginPage">
-      <form className="loginBox" onSubmit={handleLogin}>
-        <h2>College Admin Login</h2>
+    <div className="login-page">
+      <div className="overlay">
+        <form className="login-card" onSubmit={handleLogin}>
+          <h1>KR Mangalam University</h1>
+          <p>College Admin Panel</p>
 
-        <input
-          type="email"
-          placeholder="Enter Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+          <input
+            type="text"
+            placeholder="Username"
+            required
+            onChange={(e) => setUsername(e.target.value)}
+          />
 
-        <input
-          type="password"
-          placeholder="Enter Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+          <input
+            type="password"
+            placeholder="Password"
+            required
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
-        <button type="submit">Login</button>
-      </form>
+          <button type="submit">Login</button>
+        </form>
+      </div>
     </div>
   );
 }

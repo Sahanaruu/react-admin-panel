@@ -1,54 +1,37 @@
-import "./Navbar.css";
+import React, { useState, useEffect } from "react";
 
 function Navbar() {
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
-  // 🌙 Toggle Dark / Light Theme
+  useEffect(() => {
+    document.body.className = theme;
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
   const toggleTheme = () => {
-    const currentTheme = localStorage.getItem("theme") || "light";
-    const newTheme = currentTheme === "light" ? "dark" : "light";
-
-    localStorage.setItem("theme", newTheme);
-    document.body.className = newTheme;
+    setTheme(theme === "light" ? "dark" : "light");
   };
 
-  // 🔓 Logout
-  const logout = () => {
-    localStorage.removeItem("auth");
-    window.location.reload();
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn");
+    window.location.reload(); // go back to login page
   };
 
   return (
     <div className="navbar">
-      <h2 className="logo-title">College Admin Panel</h2>
+      <h2>College Admin</h2>
 
       <div className="nav-right">
-
-        {/* 🔍 Search */}
-        <input 
-          type="text" 
-          placeholder="Search..." 
-          className="search"
-        />
-
-        {/* 🌙 Theme Toggle */}
-        <button className="theme-btn" onClick={toggleTheme}>
-          🌙 / ☀️
+        <button onClick={toggleTheme}>
+          {theme === "light" ? "🌙 Dark" : "☀ Light"}
         </button>
 
-        {/* 👤 Profile */}
-        <div className="profile">
-          <div className="avatar">👤</div>
-          <span>sahana</span>
-        </div>
-
-        {/* 🚪 Logout */}
-        <button className="logout-btn" onClick={logout}>
+        <button className="logout-btn" onClick={handleLogout}>
           Logout
         </button>
-
       </div>
     </div>
   );
 }
 
-export default Navbar
+export default Navbar;

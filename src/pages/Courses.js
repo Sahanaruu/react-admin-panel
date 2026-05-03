@@ -1,53 +1,105 @@
 import React, { useState } from "react";
 import "./Courses.css";
 
-function Courses() {
+const Courses = () => {
   const [courses, setCourses] = useState([
-    { id: 1, name: "Information Technology", duration: "3 Years" },
-    { id: 2, name: "Business Management", duration: "3 Years" },
-    { id: 3, name: "Engineering", duration: "4 Years" },
+    { id: 1, name: "BCA", duration: "3 Years", seats: 60 },
+    { id: 2, name: "BBA", duration: "3 Years", seats: 50 }
   ]);
 
-  const addCourse = () => {
+  const [form, setForm] = useState({
+    name: "",
+    duration: "",
+    seats: ""
+  });
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  // Add Course
+  const addCourse = (e) => {
+    e.preventDefault();
+    if (!form.name || !form.duration || !form.seats) return;
+
     const newCourse = {
-      id: courses.length + 1,
-      name: "New Course " + (courses.length + 1),
-      duration: "3 Years",
+      id: Date.now(),
+      ...form
     };
+
     setCourses([...courses, newCourse]);
+    setForm({ name: "", duration: "", seats: "" });
+  };
+
+  // Delete Course
+  const deleteCourse = (id) => {
+    setCourses(courses.filter((c) => c.id !== id));
   };
 
   return (
-    <div>
-      <h2>Courses</h2>
+    <div className="courses-page">
+      <h1>Courses Management</h1>
 
-      <button className="add-btn" onClick={addCourse}>
-        + Add Course
-      </button>
+      {/* Add Course Form */}
+      <form className="course-form" onSubmit={addCourse}>
+        <input
+          type="text"
+          name="name"
+          placeholder="Course Name"
+          value={form.name}
+          onChange={handleChange}
+        />
 
-      <div className="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Course Name</th>
-              <th>Duration</th>
+        <input
+          type="text"
+          name="duration"
+          placeholder="Duration"
+          value={form.duration}
+          onChange={handleChange}
+        />
+
+        <input
+          type="number"
+          name="seats"
+          placeholder="Seats"
+          value={form.seats}
+          onChange={handleChange}
+        />
+
+        <button type="submit">Add Course</button>
+      </form>
+
+      {/* Table */}
+      <table className="courses-table">
+        <thead>
+          <tr>
+            <th>Course</th>
+            <th>Duration</th>
+            <th>Seats</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {courses.map((c) => (
+            <tr key={c.id}>
+              <td>{c.name}</td>
+              <td>{c.duration}</td>
+              <td>{c.seats}</td>
+              <td>
+                <button
+                  className="delete-btn"
+                  onClick={() => deleteCourse(c.id)}
+                >
+                  Delete
+                </button>
+              </td>
             </tr>
-          </thead>
-
-          <tbody>
-            {courses.map((c) => (
-              <tr key={c.id}>
-                <td>{c.id}</td>
-                <td>{c.name}</td>
-                <td>{c.duration}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
-}
+};
 
 export default Courses;

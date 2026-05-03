@@ -1,36 +1,17 @@
-import { Link, useLocation } from "react-router-dom";
-import { FaTachometerAlt, FaUserGraduate, FaChalkboardTeacher, FaBook, FaCog } from "react-icons/fa";
-import "./Sidebar.css";
+import { Link } from "react-router-dom";
 
 function Sidebar() {
-  const location = useLocation();
-
-  const menu = [
-    { name: "Dashboard", path: "/", icon: <FaTachometerAlt /> },
-    { name: "Students", path: "/students", icon: <FaUserGraduate /> },
-    { name: "Teachers", path: "/teachers", icon: <FaChalkboardTeacher /> },
-    { name: "Courses", path: "/courses", icon: <FaBook /> },
-    { name: "Settings", path: "/settings", icon: <FaCog /> },
-  ];
-
   return (
     <div className="sidebar">
-      <div className="logo">
-        <div className="avatar">👤</div>
-        <h2>Admin</h2>
-        <p>Administrator</p>
-      </div>
+      <h2>Admin</h2>
 
-      <ul className="menu">
-        {menu.map((item) => (
-          <li key={item.path} className={location.pathname === item.path ? "active" : ""}>
-            <Link to={item.path}>
-              <span className="icon">{item.icon}</span>
-              {item.name}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <Link to="/">Dashboard</Link>
+      <Link to="/students">Students</Link>
+      <Link to="/teachers">Teachers</Link>
+      <Link to="/courses">Courses</Link>
+      <Link to="/settings">Settings</Link>
+
+      <div className="sidebar-footer">© 2025 College Admin</div>
     </div>
   );
 }

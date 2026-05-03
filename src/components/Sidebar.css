@@ -1,88 +1,78 @@
-/* SIDEBAR CONTAINER */
-.sidebar{
-  width:230px;
-  height:100vh;
-  background:#0f172a;
-  color:white;
-  padding:20px 15px;
-  display:flex;
-  flex-direction:column;
-  position:sticky;
-  top:0;
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background: linear-gradient(180deg, #020617, #020617);
+  color: white;
+  padding: 25px 18px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  border-right: 1px solid #1e293b;
+  display: flex;
+  flex-direction: column;
 }
 
-/* LOGO / PROFILE */
-.logo{
-  text-align:center;
-  margin-bottom:30px;
+/* Admin profile */
+.sidebar-top {
+  text-align: center;
+  margin-bottom: 40px;
 }
 
-.avatar{
-  font-size:42px;
-  margin-bottom:5px;
+.admin-avatar {
+  width: 65px;
+  height: 65px;
+  background: #2563eb;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  font-size: 26px;
+  font-weight: bold;
 }
 
-.logo h2{
-  font-size:20px;
-  margin-bottom:2px;
+.sidebar-top h3 {
+  margin-top: 12px;
+  font-size: 20px;
 }
 
-.logo p{
-  font-size:12px;
-  color:#94a3b8;
+.sidebar-top p {
+  font-size: 13px;
+  opacity: 0.6;
 }
 
-/* MENU */
-.menu{
-  list-style:none;
-  padding:0;
-  margin-top:10px;
-  flex:1;
+/* Menu */
+.menu {
+  list-style: none;
 }
 
-/* MENU ITEM */
-.menu li{
-  margin:8px 0;
+.menu-item {
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: 0.25s;
+  font-size: 15px;
 }
 
-/* LINKS */
-.menu li a{
-  text-decoration:none;
-  color:#cbd5e1;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:12px 14px;
-  border-radius:10px;
-  font-size:15px;
-  transition:0.3s;
+.menu-item:hover {
+  background: #1e293b;
 }
 
-/* HOVER EFFECT */
-.menu li a:hover{
-  background:#1e293b;
-  color:white;
-  transform:translateX(4px);
+.menu-item:first-child {
+  background: #2563eb;
 }
 
-/* ACTIVE PAGE */
-.menu li.active a{
-  background:#2563eb;
-  color:white;
-  font-weight:600;
+.icon {
+  font-size: 18px;
 }
 
-/* ICON STYLE */
-.icon{
-  font-size:18px;
-}
-
-/* FOOTER SPACE (optional future use) */
-.sidebar-footer{
-  font-size:12px;
-  color:#64748b;
-  text-align:center;
-  margin-top:auto;
-  padding-top:15px;
-  border-top:1px solid #1e293b;
+.sidebar-footer {
+  margin-top: auto;
+  text-align: center;
+  font-size: 12px;
+  opacity: 0.5;
 }

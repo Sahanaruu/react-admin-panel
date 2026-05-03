@@ -1,57 +1,106 @@
 import React, { useState } from "react";
 import "./Students.css";
 
-function Students() {
+const Students = () => {
   const [students, setStudents] = useState([
-    { id: 1, name: "John Silva", course: "IT", year: "2nd Year" },
-    { id: 2, name: "Amal Perera", course: "Business", year: "1st Year" },
-    { id: 3, name: "Nadeesha Fernando", course: "Engineering", year: "3rd Year" },
+    { id: 1, name: "Rahul", department: "CS", year: "1st" },
+    { id: 2, name: "Anjali", department: "Math", year: "2nd" }
   ]);
 
-  const addStudent = () => {
+  const [form, setForm] = useState({
+    name: "",
+    department: "",
+    year: ""
+  });
+
+  // handle input change
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  // add student
+  const addStudent = (e) => {
+    e.preventDefault();
+    if (!form.name || !form.department || !form.year) return;
+
     const newStudent = {
-      id: students.length + 1,
-      name: "New Student " + (students.length + 1),
-      course: "New Course",
-      year: "1st Year",
+      id: Date.now(),
+      ...form
     };
 
     setStudents([...students, newStudent]);
+
+    // clear form
+    setForm({ name: "", department: "", year: "" });
+  };
+
+  // delete student
+  const deleteStudent = (id) => {
+    setStudents(students.filter((s) => s.id !== id));
   };
 
   return (
-    <div>
-      <h2>Students</h2>
+    <div className="students-page">
+      <h1>Students Management</h1>
 
-      <button className="add-btn" onClick={addStudent}>
-        + Add Student
-      </button>
+      {/* Add Form */}
+      <form className="student-form" onSubmit={addStudent}>
+        <input
+          type="text"
+          name="name"
+          placeholder="Student Name"
+          value={form.name}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="department"
+          placeholder="Department"
+          value={form.department}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="year"
+          placeholder="Year"
+          value={form.year}
+          onChange={handleChange}
+        />
 
-      <div className="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Course</th>
-              <th>Year</th>
+        <button type="submit">Add Student</button>
+      </form>
+
+      {/* Students Table */}
+      <table className="students-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Year</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {students.map((s) => (
+            <tr key={s.id}>
+              <td>{s.name}</td>
+              <td>{s.department}</td>
+              <td>{s.year}</td>
+              <td>
+                <button
+                  className="delete-btn"
+                  onClick={() => deleteStudent(s.id)}
+                >
+                  Delete
+                </button>
+              </td>
             </tr>
-          </thead>
-
-          <tbody>
-            {students.map((s) => (
-              <tr key={s.id}>
-                <td>{s.id}</td>
-                <td>{s.name}</td>
-                <td>{s.course}</td>
-                <td>{s.year}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
-}
+};
 
 export default Students;
