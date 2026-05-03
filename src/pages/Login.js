@@ -7,7 +7,12 @@ function Login({ setIsLoggedIn }) {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    setIsLoggedIn(true); // allow any login
+
+    // save login in browser
+    localStorage.setItem("loggedIn", "true");
+
+    // open dashboard
+    setIsLoggedIn(true);
   };
 
   return (
@@ -17,7 +22,7 @@ function Login({ setIsLoggedIn }) {
 
         <input
           type="text"
-          placeholder="Username"
+          placeholder="Enter username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
@@ -25,7 +30,7 @@ function Login({ setIsLoggedIn }) {
 
         <input
           type="password"
-          placeholder="Password"
+          placeholder="Enter password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required

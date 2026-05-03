@@ -1,5 +1,5 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import React, { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar";
@@ -11,31 +11,47 @@ import Courses from "./pages/Courses";
 import Settings from "./pages/Settings";
 import Login from "./pages/Login";
 
-function App() {
-  const isLoggedIn = localStorage.getItem("isLoggedIn");
+import "./App.css";
 
-  // If NOT logged in → show login page
+function App() {
+  // ✅ LOGIN STATE
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // ✅ THEME STATE
+  const [darkMode, setDarkMode] = useState(true);
+
+  // 👉 show login page first
   if (!isLoggedIn) {
-    return <Login />;
+    return <Login setIsLoggedIn={setIsLoggedIn} />;
   }
 
   return (
     <Router>
-      <div className="app">
+      <div className={darkMode ? "app dark" : "app light"}>
+        
+        {/* Sidebar */}
         <Sidebar />
 
         <div className="main">
-          <Navbar />
+          {/* Navbar */}
+          <Navbar
+            darkMode={darkMode}
+            setDarkMode={setDarkMode}
+            setIsLoggedIn={setIsLoggedIn}
+          />
 
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/students" element={<Students />} />
-            <Route path="/teachers" element={<Teachers />} />
-            <Route path="/courses" element={<Courses />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="*" element={<Navigate to="/" />} />
-          </Routes>
+          {/* Pages */}
+          <div className="content">
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/students" element={<Students />} />
+              <Route path="/teachers" element={<Teachers />} />
+              <Route path="/courses" element={<Courses />} />
+              <Route path="/settings" element={<Settings />} />
+            </Routes>
+          </div>
         </div>
+
       </div>
     </Router>
   );

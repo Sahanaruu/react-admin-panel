@@ -1,29 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import "./Navbar.css";
 
-function Navbar() {
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+function Navbar({ darkMode, setDarkMode, setIsLoggedIn }) {
 
-  useEffect(() => {
-    document.body.className = theme;
-    localStorage.setItem("theme", theme);
-  }, [theme]);
-
+  // toggle theme
   const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
+    setDarkMode(prev => !prev);
   };
 
+  // logout function
   const handleLogout = () => {
-    localStorage.removeItem("isLoggedIn");
-    window.location.reload(); // go back to login page
+    setIsLoggedIn(false);
   };
 
   return (
     <div className="navbar">
       <h2>College Admin</h2>
 
-      <div className="nav-right">
-        <button onClick={toggleTheme}>
-          {theme === "light" ? "🌙 Dark" : "☀ Light"}
+      <div>
+        <button className="theme-btn" onClick={toggleTheme}>
+          {darkMode ? "☀ Light" : "🌙 Dark"}
         </button>
 
         <button className="logout-btn" onClick={handleLogout}>
