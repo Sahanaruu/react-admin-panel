@@ -7,12 +7,7 @@ function Login({ setIsLoggedIn }) {
 
   const handleLogin = (e) => {
     e.preventDefault();
-
-    if (username === "admin" && password === "admin") {
-      setIsLoggedIn(true);
-    } else {
-      alert("Invalid credentials");
-    }
+    setIsLoggedIn(true); // allow any login
   };
 
   return (
